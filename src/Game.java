@@ -19,7 +19,7 @@ public class Game {
         String s = "";
 
         for (int i = 0; i < board.getWidth() + 2; i++){
-            s += "% ";
+            s += "\u25A9 ";
         }
         this.frame = s + '\n';
 
@@ -41,11 +41,11 @@ public class Game {
     private void render(){
         String UI = frame;
         for (int y = board.getHeight() - 1; y >= 0; y--){
-            String row = "% ";
+            String row = "\u25A9 ";
             for (int x = 0; x < board.getWidth(); x++){
                 row += board.getPixel(x,y);
             }
-            row += "% ";
+            row += "\u25A9";
             UI += row + '\n';
         }
         UI += frame;

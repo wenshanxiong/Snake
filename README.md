@@ -1,5 +1,7 @@
 # Run
-```$ bash src/run.sh```
+```$ cd src```
+
+```$ bash run.sh```
 
 # Control
 |Command|Key|
