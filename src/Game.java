@@ -4,7 +4,7 @@ public class Game {
     private Board board; // (0,0) is bottom left
     private Snake snake;
     private String frame;
-    private String newPage = "\n\n\n\n\n\n\n\n\n\n";
+    private String newPage;
 
     enum Direction {
         UP,
@@ -17,10 +17,17 @@ public class Game {
         this.board = new Board();
         this.snake = new Snake(board);
         String s = "";
+
         for (int i = 0; i < board.getWidth() + 2; i++){
             s += "% ";
         }
         this.frame = s + '\n';
+
+        s = "";
+        for (int i = 0; i < 50; i++){
+            s += "\n";
+        }
+        this.newPage = s;
     }
 
     public Snake getSnake(){
@@ -55,7 +62,7 @@ public class Game {
         while (true) {
             game.printScore();
             game.render();
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(500);
             try {
                 snake.forward();
             } catch (GameOverException e){

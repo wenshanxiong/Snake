@@ -6,11 +6,7 @@ public class Tile {
     enum TileType {
         EMPTY,
         FOOD,
-        SNAKE_BODY,
-        SNAKE_HEAD_UP,
-        SNAKE_HEAD_RIGHT,
-        SNAKE_HEAD_DOWN,
-        SNAKE_HEAD_LEFT
+        SNAKE
     }
 
     public Tile(int x, int y){
@@ -41,16 +37,8 @@ public class Tile {
                 return "  ";
             case FOOD:
                 return "\u25AA ";
-            case SNAKE_BODY:
+            case SNAKE:
                 return "\u25A0 ";
-            case SNAKE_HEAD_UP:
-                return "\u25B2 ";
-            case SNAKE_HEAD_DOWN:
-                return "\u25BC ";
-            case SNAKE_HEAD_LEFT:
-                return "\u25C0 ";
-            case SNAKE_HEAD_RIGHT:
-                return "\u25B6 ";
         }
         return "! ";
     }

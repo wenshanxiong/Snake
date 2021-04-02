@@ -8,8 +8,8 @@ public class Board {
 
 
     public Board(){
-        this.height = 12;
-        this.width = 12;
+        this.height = 10;
+        this.width = 10;
         this.board = new Tile[width][height];
         for (int x = 0; x < width; x++){
             for (int y = 0; y < height; y++){

@@ -14,11 +14,7 @@ public class Snake {
         int y = board.getHeight() / 2;
         for (int x = board.getWidth() / 2; x < (board.getWidth() / 2) + 2; x++){
             Tile curr = board.getTile(x,y);
-            if (x == board.getWidth() / 2) {
-                curr.setType(Tile.TileType.SNAKE_HEAD_LEFT);
-            } else{
-                curr.setType(Tile.TileType.SNAKE_BODY);
-            }
+            curr.setType(Tile.TileType.SNAKE);
             body.add(curr);
         }
     }
@@ -46,33 +42,23 @@ public class Snake {
 
     public void forward() throws GameOverException {
         Tile head = body.getFirst();
-        head.setType(Tile.TileType.SNAKE_BODY);
 //        System.out.println("Direction: " + getD());
-        Tile.TileType oldType = Tile.TileType.EMPTY;
         try {
             switch (getD()) {
                 case UP:
                     head = board.getTile(head.getX(), head.getY() + 1);
-                    oldType = head.getType();
-                    head.setType(Tile.TileType.SNAKE_HEAD_UP);
 //                    System.out.println("UP");
                     break;
                 case RIGHT:
                     head = board.getTile(head.getX() + 1, head.getY());
-                    oldType = head.getType();
-                    head.setType(Tile.TileType.SNAKE_HEAD_RIGHT);
 //                    System.out.println("RIGHT");
                     break;
                 case DOWN:
                     head = board.getTile(head.getX(), head.getY() - 1);
-                    oldType = head.getType();
-                    head.setType(Tile.TileType.SNAKE_HEAD_DOWN);
 //                    System.out.println("DOWN");
                     break;
                 case LEFT:
                     head = board.getTile(head.getX() - 1, head.getY());
-                    oldType = head.getType();
-                    head.setType(Tile.TileType.SNAKE_HEAD_LEFT);
 //                    System.out.println("UP");
                     break;
             }
@@ -80,12 +66,13 @@ public class Snake {
             throw new GameOverException();
         }
         body.addFirst(head);
-        if (oldType == Tile.TileType.FOOD){
+        if (head.getType() == Tile.TileType.FOOD){
             board.setFood();
             eaten.addLast(head);
-        } else if (oldType != Tile.TileType.EMPTY){
+        } else if (head.getType() != Tile.TileType.EMPTY){
             throw new GameOverException();
         }
+        head.setType(Tile.TileType.SNAKE);
 
         Tile tail = body.getLast();
         if (eaten.peekFirst() != tail) {
